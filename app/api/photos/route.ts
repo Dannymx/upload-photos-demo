@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
+import { v4 as uuidv4 } from "uuid";
 
 // TODO: save image
 export async function POST(request: Request) {
@@ -12,7 +13,7 @@ export async function POST(request: Request) {
 
   const formData = await request.formData();
   const file = formData.get("file") as File;
-  const filename = formData.get("filename") as string;
+  const filename = `${uuidv4()}_${formData.get("filename")}`;
 
   if (!file) {
     return NextResponse.json({ success: false });
