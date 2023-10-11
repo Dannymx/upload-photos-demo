@@ -8,11 +8,17 @@ import { useFileUpload } from "@/hooks/useFileUpload";
 
 export const FileUpload = () => {
   const { mutate } = useFileUpload();
-  const handleUpload = (e: ChangeEvent<HTMLInputElement>) => {
+
+  const handleUpload = async (e: ChangeEvent<HTMLInputElement>) => {
     const input = e.target as HTMLInputElement;
 
     if (input.files) {
-      mutate({ url: "/api/photos", files: input.files });
+      const data = new FormData();
+
+      data.append("file", input.files[0] as File);
+      data.append("filename", input.files[0] ? input.files[0].name : "");
+
+      mutate({ url: "/api/photos", data });
     }
   };
 

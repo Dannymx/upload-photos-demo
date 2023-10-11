@@ -4,13 +4,17 @@ import axios from "axios";
 
 type Props = {
   url: string;
-  files: FileList;
+  data: FormData;
 };
 
 export const useFileUpload = () => {
   const mutation = useMutation<void, AxiosError, Props>({
-    mutationFn: ({ url, files }) =>
-      axios.post(url, files).then((res) => res.data),
+    mutationFn: ({ url, data }) =>
+      axios.post(url, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }),
   });
 
   return {
