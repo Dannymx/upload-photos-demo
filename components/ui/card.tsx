@@ -9,7 +9,7 @@ type Props = {
 
 const Card = ({ children }: Props) => (
   <AspectRatio ratio={1 / 1}>
-    <div className="absolute h-full w-full overflow-hidden rounded-xl shadow-md shadow-slate-500">
+    <div className="group absolute h-full w-full overflow-hidden rounded-xl shadow-md shadow-slate-500">
       {children}
     </div>
   </AspectRatio>

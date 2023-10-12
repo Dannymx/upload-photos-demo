@@ -36,7 +36,7 @@ export async function GET() {
   const { data, error } = await supabase.storage.from(storageBucket).list("", {
     limit: 100,
     offset: 0,
-    sortBy: { column: "name", order: "desc" },
+    sortBy: { column: "created_at", order: "desc" },
   });
 
   if (error) {
@@ -47,4 +47,21 @@ export async function GET() {
   }
 
   return NextResponse.json({ success: true, photos: data });
+}
+
+export async function DELETE(request: Request) {
+  const res = await request.json();
+
+  const { data, error } = await supabase.storage
+    .from(storageBucket)
+    .remove([res.name]);
+
+  if (error) {
+    return NextResponse.json(
+      { success: false },
+      { status: 500, statusText: error.message },
+    );
+  }
+
+  return NextResponse.json({ success: true, data });
 }
