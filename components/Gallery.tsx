@@ -47,7 +47,7 @@ export const Gallery = () => {
         {data.data.photos.length}{" "}
         {data.data.photos.length === 1 ? "Image" : "Images"}
       </h1>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {data.data.photos.map((photo) => (
           <Card key={photo.id}>
             <Image src={photo.name} className="object-cover" fill alt="" />

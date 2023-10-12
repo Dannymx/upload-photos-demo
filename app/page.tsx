@@ -14,11 +14,11 @@ export default function Home() {
     <QueryClientProvider client={queryClient}>
       <AppContextProvider>
         <main className="container flex min-h-screen max-w-screen-md flex-col gap-8 p-8">
-          <div className="flex flex-row gap-4">
-            <div className="w-1/2 grow">
+          <div className="flex flex-col gap-4 sm:flex-row">
+            <div className="w-full grow sm:w-1/2">
               <SearchBox />
             </div>
-            <div className="flex items-center justify-end">
+            <div className="flex h-12 items-center justify-center sm:h-auto sm:justify-end">
               <FileUpload />
             </div>
           </div>
