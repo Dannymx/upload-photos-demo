@@ -12,7 +12,7 @@ export const useFileUpload = () => {
 
   const mutation = useMutation<void, AxiosError, Props>({
     mutationFn: ({ url, data }) =>
-      axios.post(url, data, {
+      axios.put(url, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
