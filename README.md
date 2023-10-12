@@ -1,4 +1,4 @@
-This a demo to showcase uploading, storing, and retriving images using different technologies.
+This a demo to showcase uploading, storing, and retriving images using different technologies. This took about 2 days to complete.
 
 ## Tech stack used
 
@@ -40,3 +40,9 @@ pnpm start
 # or
 bun start
 ```
+
+## Wishlist/TODO
+
+- Add testing
+- Enhanced error handling
+- Check API responses with Zod
