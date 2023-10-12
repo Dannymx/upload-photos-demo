@@ -36,13 +36,15 @@ export async function PUT(request: Request) {
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
 
-  const { data, error } = await supabase.storage.from(storageBucket).list("", {
-    // TODO: Paginate
-    // limit: 100,
-    // offset: 0,
-    search: searchParams.get("search") ?? undefined,
-    sortBy: { column: "created_at", order: "desc" },
-  });
+  const { data, error } = await supabase
+    .schema("storage")
+    .from("objects")
+    .select("name, created_at")
+    .order("created_at", { ascending: false })
+    .ilike(
+      "name",
+      searchParams.get("search") ? `%${searchParams.get("search")}%` : "%%",
+    );
 
   if (error) {
     return NextResponse.json(
