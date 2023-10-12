@@ -75,24 +75,3 @@ export async function DELETE(request: Request) {
 
   return NextResponse.json({ success: true, data });
 }
-
-export async function POST(request: Request) {
-  const res = await request.json();
-
-  const { data, error } = await supabase.storage.from(storageBucket).list("", {
-    // TODO: Paginate
-    // limit: 100,
-    // offset: 0,
-    sortBy: { column: "created_at", order: "desc" },
-    search: res.search,
-  });
-
-  if (error) {
-    return NextResponse.json(
-      { success: false },
-      { status: 500, statusText: error.message },
-    );
-  }
-
-  return NextResponse.json({ success: true, data });
-}
